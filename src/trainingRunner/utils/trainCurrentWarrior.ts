@@ -9,11 +9,15 @@ export default function trainCurrentWarrior() {
         return;
     }
 
+    trainingStatus.currentWarriorWeaponPastDurability = currentWarrior.weapon.durability;
+
     if(currentWarrior.weapon.durability <= 0) {
         trainingStatus.timerAdvance = false;
         currentWarrior.state = "finished"
         return;
     }
+
+    trainingStatus.currentWarriorPastGold = currentWarrior.gold;
 
     const trainingCost = Math.ceil(currentWarrior.weapon.cost / 10);
 

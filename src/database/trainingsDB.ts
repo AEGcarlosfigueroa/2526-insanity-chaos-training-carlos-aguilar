@@ -14,6 +14,7 @@ export async function saveTraining() {
         });
 
         console.log("Training state saved in DB at " + getCurrentDate());
+        console.log("");
     }
     catch(error)
     {

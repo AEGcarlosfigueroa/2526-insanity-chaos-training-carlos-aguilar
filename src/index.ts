@@ -3,7 +3,7 @@ import dotenv from "dotenv"
 import trainingSetup from "./trainingRunner/trainingSetup.ts";
 import cron from "node-cron";
 import trainingRunner from "./trainingRunner/trainingRunner.ts";
-import { trainingStatus } from "./globals.ts";
+import { tasks } from "./globals.ts";
 import * as trainingsDB from "./database/trainingsDB.ts"
 
 dotenv.config();
@@ -12,29 +12,18 @@ async function start() {
 
     await connectDB();
     trainingSetup();
-    const dbtask = cron.schedule("*/30 * * * * *", async() => {
-        if(trainingStatus.canTrain)
-        {
-            console.log("Saving to mongoDB...");
-            await trainingsDB.saveTraining();
-            console.log(" ");
-        }
-        else
-        {
-            await dbtask.stop();
-        }
+    const dbtask = cron.schedule("*/30 * * * * *", () => {
+        console.log("Saving to mongoDB...");
+        trainingsDB.saveTraining();
     })
 
+    tasks.push(dbtask);
+
     const task = cron.schedule("*/4 * * * * *", () => {
-        if(trainingStatus.canTrain)
-        {
-            trainingRunner();
-        }
-        else
-        {
-            task.stop();
-        }
+        trainingRunner();
     })
+
+    tasks.push(task);
 }
 
 async function connectDB() {

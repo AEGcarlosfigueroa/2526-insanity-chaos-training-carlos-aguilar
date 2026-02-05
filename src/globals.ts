@@ -11,10 +11,14 @@ export const currentTime = {
 export const trainingStatus = {
     round: 1,
     currentWarrior: 0,
+    currentWarriorWeaponPastDurability: 0,
     currentWarriorWeaponPastQuality: 0,
+    currentWarriorPastGold: 0,
     currentWarriorTrainingCost: 0,
     timerAdvance: true,
     canTrain: true
 }
+
+export const tasks: any[] = [];
 
 

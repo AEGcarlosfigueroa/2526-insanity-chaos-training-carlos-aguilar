@@ -1,4 +1,4 @@
-import { warriorArray, trainingStatus } from "../../globals.ts";
+import { warriorArray, trainingStatus, tasks } from "../../globals.ts";
 import type { Warrior } from "./../../types/Warrior.ts";
 
 export default function checkIfAnyWarriorsCanStillTrain() {
@@ -15,5 +15,13 @@ export default function checkIfAnyWarriorsCanStillTrain() {
     if(!canStillTrain) {
         trainingStatus.canTrain = false;
         console.log("All warriors have finished training, stopping all crons...");
+        stopAllTasks();
+    }
+}
+
+function stopAllTasks() {
+    for(let i=0; i<tasks.length; i++)
+    {
+        tasks[i].stop();
     }
 }

@@ -23,13 +23,13 @@ function displayTrainingResults() {
         console.log(" ");
         return;
     }
-    else if(currentWarrior.gold < trainingStatus.currentWarriorTrainingCost) {
+    else if(trainingStatus.currentWarriorPastGold < trainingStatus.currentWarriorTrainingCost) {
         console.log(`${currentWarrior.name} cannot train because they do not have enough gold`);
         trainingStatus.timerAdvance = false;
         console.log(" ");
         return;
     }
-    else if(currentWarrior.weapon.durability <= 0) {
+    else if(trainingStatus.currentWarriorWeaponPastDurability <= 0) {
         console.log(`${currentWarrior.name} cannot train because their weapon is broken`);
         trainingStatus.timerAdvance = false;
         console.log(" ");
