@@ -9,6 +9,7 @@ export default function trainingSetup() {
     //Inset warriors into warriorArray
     warriors.map((elem: any) => {
         elem.weapon = null;
+        elem.state = "training";
         globals.warriorArray.push(elem);
     });
 
@@ -43,6 +44,7 @@ function assignWeapons() {
         if(allowedWeapons.length < 1)
         {
             console.log(`${warrior.name} has no valid weapons to wield!`);
+            warrior.state = "finished";
             return;
         }
 

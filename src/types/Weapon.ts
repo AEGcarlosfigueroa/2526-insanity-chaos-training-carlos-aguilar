@@ -1,6 +1,6 @@
 type Weapon = {
     name: string,
-    type: { type: string, enum: ["Sword", "Axe", "Dagger", "Hammer", "Bow", "Spear", "Greatsword", "Mace", "Crossbow"] },
+    type: string
     quality: number,
     minStrength: number,
     cost: number,
